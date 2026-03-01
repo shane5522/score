@@ -7,9 +7,19 @@
 <body>
     <h1>성적 관리 프로그램</h1>
     <div class="score-container">
-        <div th:each="score : ${score}">
-            <a th:href="@{/score/contents(id=${score.id}}" th:text="${score.name}"></a>
+        <div>학번 이름 전공 분반 전화번호</div>
+        <div th:each="student : ${students}">
+            <a th:href="@{/content(id=${student.id})}" th:text="${student.id}"></a>
+            <a th:href="@{/content(id=${student.id})}" th:text="${student.name}"></a>
+            <a th:href="@{/content(id=${student.id})}" th:text="${student.major}"></a>
+            <a th:href="@{/content(id=${student.id})}" th:text="${student.className}"></a>
+            <a th:href="@{/content(id=${student.id})}" th:text="${student.phone}"></a>
         </div>
+    </div>
+    <div>
+        <form action="/write" methond="get">
+            <button type="submit">추가</button>
+        </form>
     </div>
 </body>
 </html>
