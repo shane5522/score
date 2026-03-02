@@ -5,6 +5,39 @@
     <title>Title</title>
 </head>
 <body>
-
+    <div class="student_content">
+        <div>학번</div><div th:text="${student.studentId}"></div>
+        <div>학생</div><div th:text="${student.name} + '; ' + ${student.engName} + '; ' + ${student.birth} + '; ' + ${student.gender}"></div>
+        <div>소속</div><div th:text="'동서울대학교; 대학; ' + ${student.major}"></div>
+        <div>과정</div><div th:text="${student.major} + '(3년제)(주)(일반과정); 일반과정; 재학(2025.03.01); ' + ${student.grade} + '; ' + ${student.className} + '반; 등록학기:2; 성적학기:2;'"></div>
+        <div>기타</div><div th:text="${student.phone} + ' ; ' + ${student.address} + ' ; ' + 'shane552210@gmail.com; 지도교수:조민양;'"></div>
+    </div>
+    <div>성적내역</div>
+    <div class="score_content">
+        <table border="1">
+            <tr>
+                <td>No</td>
+                <td>학년도</td>
+                <td>학기</td>
+                <td>교과목코드</td>
+                <td>교과목명</td>
+                <td>신청학점</td>
+                <td>취득학점</td>
+                <td>등급</td>
+                <td>평점</td>
+            </tr>
+            <tr th:each="enrollment, stat : ${enrollments}">
+                <td th:text="${stat.count}"></td>
+                <td th:text="${enrollment.getYear()}"></td>
+                <td th:text="${enrollment.getSemester()}"></td>
+                <td th:text="${enrollment.getSubject.getSubjectId()}"></td>
+                <td th:text="${enrollment.getSubject.getName()}"></td>
+                <td th:text="${enrollment.getSubject.getCredit()}"></td>
+                <td th:text="${enrollment.getEarnedCredits()}"></td>
+                <td th:text="${enrollment.getSubjectGrade()}"></td>
+                <td th:text="${enrollment.getGradePoint()}"></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

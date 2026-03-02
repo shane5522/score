@@ -16,9 +16,14 @@ public class StudentService {
         this.repository = repository;
     }
 
-    //조회
+    //학생 목록 조회
     public List<Student> getList(){
         return repository.findAll();
+    }
+
+    //학생 단일 조회
+    public Student getStudent(Long id){
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("학생 없음"));
     }
 
     //추가

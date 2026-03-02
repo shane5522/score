@@ -28,23 +28,4 @@ public class HomeController {
         model.addAttribute("students", studentList);
         return "home";
     }
-
-    //학생 추가
-    @GetMapping("/write")
-    public String editPage(){
-        return "write";
-    }
-
-    @PostMapping("/write")
-    public String writeStudent(@ModelAttribute StudentRequestDto.Write dto){
-        Student student = dto.toEntity();
-        service.save(student);
-        return "redirect:/";
-    }
-
-    //성적 조회
-    @GetMapping("/content")
-    public String content(@RequestParam Long id, Model model){
-        return "content";
-    }
 }

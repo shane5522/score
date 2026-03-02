@@ -6,7 +6,6 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -16,8 +15,7 @@ import java.util.Date;
 @Builder
 public class Student {
     @Id
-    @Column(name="student_id")
-    private Long id;
+    private Long studentId;
 
     private String name;
 
@@ -30,6 +28,8 @@ public class Student {
     private String major;
 
     private String phone;
+
+    private String grade;
 
     private String className;
 

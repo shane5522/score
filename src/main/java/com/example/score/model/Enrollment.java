@@ -3,8 +3,6 @@ package com.example.score.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
-
 @Entity
 @Getter
 @Setter
@@ -12,10 +10,10 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @IdClass(EnrollmentId.class)
-public class Enrollments {
+public class Enrollment {
     @Id
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="student_id")
     private Student student;
 
     @Id
@@ -23,11 +21,13 @@ public class Enrollments {
     @JoinColumn(name="id")
     private Subject subject;
 
-    private Date year;
+    private String year;
 
-    private int semester;
+    private String semester;
 
-    private String grade;
+    private int earnedCredits;
 
-    private float gradePoint;
+    private String subjectGrade;
+
+    private Double gradePoint;
 }

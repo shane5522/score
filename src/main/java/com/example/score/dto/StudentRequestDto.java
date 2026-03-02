@@ -4,7 +4,6 @@ import com.example.score.model.Student;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class StudentRequestDto {
     @Getter
@@ -25,7 +24,7 @@ public class StudentRequestDto {
 
         public Student toEntity(){
             return Student.builder()
-                    .id(id)
+                    .studentId(id)
                     .name(name)
                     .engName(engName)
                     .major(major)
