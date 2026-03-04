@@ -15,4 +15,12 @@ public class SubjectService {
     public SubjectService(SubjectRepository repository) {
         this.repository = repository;
     }
+
+    public Subject getBySubjectId(String id){
+        return repository.findBySubjectId(id).orElseThrow(() -> new RuntimeException("과목 없음"));
+    }
+
+    public List<Subject> getAllSubjects(){
+        return repository.findAll();
+    }
 }

@@ -25,19 +25,86 @@
                 <td>취득학점</td>
                 <td>등급</td>
                 <td>평점</td>
+                <td></td>
+                <td></td>
             </tr>
             <tr th:each="enrollment, stat : ${enrollments}">
                 <td th:text="${stat.count}"></td>
-                <td th:text="${enrollment.getYear()}"></td>
-                <td th:text="${enrollment.getSemester()}"></td>
-                <td th:text="${enrollment.getSubject.getSubjectId()}"></td>
-                <td th:text="${enrollment.getSubject.getName()}"></td>
-                <td th:text="${enrollment.getSubject.getCredit()}"></td>
-                <td th:text="${enrollment.getEarnedCredits()}"></td>
-                <td th:text="${enrollment.getSubjectGrade()}"></td>
-                <td th:text="${enrollment.getGradePoint()}"></td>
+                <td>
+                    <span th:id="'year-text-' + ${enrollment.student.studentId}"
+                        th:text="${enrollment.year}"></span>
+
+                    <input type="text"
+                        th:id="'year-input-' + ${enrollment.student.studentId}"
+                        th:value="${enrollment.year}"
+                        style="display:none;">
+                </td>
+                <td>
+                    <span th:id="'semester-text-' + ${enrollment.student.studentId}"
+                          th:text="${enrollment.semester}"></span>
+
+                    <input type="text"
+                        th:id="'semester-input-' + ${enrollment.student.studentId}"
+                        th:value="${enrollment.semester}"
+                        style="display:none;">
+                </td>
+                <td>
+                    <span th:id="'subject-id-text-' + ${enrollment.student.studentId}"
+                          th:text="${enrollment.subject.subjectId}"></span>
+                </td>
+                <td>
+                    <span th:id="'name-text-' + ${enrollment.student.studentId}"
+                          th:text="${enrollment.subject.name}"></span>
+
+                    <select style="display: none" th:id="'name-input-' + ${enrollment.student.studentId}">
+                        <option th:each="subject : ${subjects}" th:text="${subject.name}"></option>
+                    </select>
+                </td>
+                <td>
+                    <span th:id="'credit-text-' + ${enrollment.student.studentId}"
+                          th:text="${enrollment.subject.credit}"></span>
+                </td>
+                <td>
+                    <span th:id="'earned-credits-text-' + ${enrollment.student.studentId}"
+                          th:text="${enrollment.earnedCredits}"></span>
+
+                    <input type="text"
+                           th:id="'earned-credits-input-' + ${enrollment.student.studentId}"
+                           th:value="${enrollment.earnedCredits}"
+                           style="display:none;">
+                </td>
+                <td>
+                    <span th:id="'subject-grade-text-' + ${enrollment.student.studentId}"
+                          th:text="${enrollment.subjectGrade}"></span>
+
+                    <input type="text"
+                           th:id="'subject-grade-input-' + ${enrollment.student.studentId}"
+                           th:value="${enrollment.subjectGrade}"
+                           style="display:none;">
+                </td>
+                <td>
+                    <span th:id="'grade-point-text-' + ${enrollment.student.studentId}"
+                          th:text="${enrollment.gradePoint}"></span>
+
+                    <input type="text"
+                           th:id="'grade-point-input-' + ${enrollment.student.studentId}"
+                           th:value="${enrollment.gradePoint}"
+                           style="display:none;">
+                </td>
+                <td>
+                    <button id="updateBtn"
+                            th:attr="data-id=${enrollment.student.studentId}"
+                            onclick="editRow(this)">수정</button>
+
+                    <button th:attr="data-id=${enrollment.student.studentId}"
+                            onclick="saveRow(this)"
+                            style="display:none;"
+                            th:id="'save-btn-' + ${enrollment.student.studentId}">저장</button>
+                </td>
+                <td><a th:href="@{/score/delete/{studentId}(studentId=${enrollment.student.studentId})}">삭제</a></td>
             </tr>
         </table>
     </div>
 </body>
+<script th:src="@{/js/score-update.js}"></script>
 </html>
